@@ -1,0 +1,42 @@
+{
+  "base_model_dir": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/models/laya_base_english",
+  "complete_training_file": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/laya_base_restart/data/splits/train_complete.json",
+  "description_batch_size": 32,
+  "description_catalogue": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/data/description_aware/cluster_descriptions.json",
+  "description_logit_scale": 10.0,
+  "description_loss_weight": 0.5,
+  "description_max_length": 256,
+  "dropout": 0.1,
+  "encoder_learning_rate": 2.5e-05,
+  "epochs": 4,
+  "evaluation_batch_size": 32,
+  "fresh_start_policy": {
+    "new_classification_heads": {
+      "Audience": 100,
+      "Style": 100,
+      "Task": 100,
+      "Topic": 100
+    },
+    "resume_checkpoint": null,
+    "reuse_classification_heads": false,
+    "reuse_optimizer": false,
+    "start_from_base_laya": true
+  },
+  "gradient_accumulation_steps": 4,
+  "gradient_clip_norm": 1.0,
+  "head_learning_rate": 0.0001,
+  "logging_updates": 5,
+  "max_length": 512,
+  "micro_batch_size": 16,
+  "num_classes": 100,
+  "output_dir": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/laya_base_restart/models/laya_base_description_four_head_run_01",
+  "seed": 42,
+  "splits": {
+    "test": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/laya_base_restart/data/splits/test.jsonl",
+    "train": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/laya_base_restart/data/splits/train.jsonl",
+    "validation": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/laya_base_restart/data/splits/validation.jsonl"
+  },
+  "status_path": "/home/gpuuser2/gpuuser2_a/atishya/laya_tads_anchor_classifier/laya_base_restart/data/laya_base_description_four_head_run_01_status.json",
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01
+}

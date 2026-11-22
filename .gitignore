@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+/data/
+/logs/
+/models/
+/checkpoints/
+*.pt
+*.bin
+*.safetensors
+*.parquet
+*.npy

@@ -1,0 +1,150 @@
+{
+  "anchor_rendering": {
+    "field_order": [
+      "Task",
+      "Topic",
+      "Style",
+      "Audience"
+    ],
+    "line_prefix": "- ",
+    "with_title": "{cluster_id} — {title}: {refined_description}",
+    "without_title": "{cluster_id}: {refined_description}"
+  },
+  "comparison_policy": {
+    "arms": [
+      "base_pplx",
+      "epoch8_finetuned_pplx"
+    ],
+    "same_cluster_assignments": true,
+    "same_cluster_descriptions": true,
+    "same_prompts": true,
+    "same_samples": true,
+    "same_truncation_policy": true,
+    "use_test_or_teacher_labels_for_selection": false
+  },
+  "contract_version": 1,
+  "experiment": "pplx_decider_v1_2_direct_quality_scoring",
+  "metric_columns": {
+    "Completeness": "completeness",
+    "Complexity": "complexity",
+    "Information Richness": "information_richness",
+    "Overall Score": "overall_score",
+    "Rarity": "rarity"
+  },
+  "metrics": [
+    "Completeness",
+    "Information Richness",
+    "Rarity",
+    "Complexity",
+    "Overall Score"
+  ],
+  "model": "perplexity-ai/pplx-decider-v1.2",
+  "model_revision": "cce0f3f80033e9d89d80831d5281fd72124aacce",
+  "questions": {
+    "Completeness": {
+      "criteria": [
+        "Completely missing or unusable",
+        "Almost entirely incomplete",
+        "Very incomplete",
+        "Several essential parts are missing",
+        "Partially complete",
+        "Adequate but has noticeable omissions",
+        "Mostly complete",
+        "Complete and useful",
+        "Very complete and detailed",
+        "Exceptionally complete"
+      ],
+      "instructions": "How complete is the response for the user's request?",
+      "type": "score"
+    },
+    "Complexity": {
+      "criteria": [
+        "Trivial",
+        "Extremely simple",
+        "Very simple",
+        "Simple",
+        "Moderately simple",
+        "Moderate",
+        "Moderately complex",
+        "Complex",
+        "Very complex",
+        "Exceptionally complex"
+      ],
+      "instructions": "How complex is the task and the reasoning or knowledge needed for its response?",
+      "type": "score"
+    },
+    "Information Richness": {
+      "criteria": [
+        "No useful information",
+        "Almost no useful information",
+        "Very little useful information",
+        "Limited information",
+        "Some useful information",
+        "Adequate information",
+        "Good amount of useful information",
+        "Rich and informative",
+        "Very rich and detailed",
+        "Exceptionally informative"
+      ],
+      "instructions": "How much useful and informative content does the response contain?",
+      "type": "score"
+    },
+    "Overall Score": {
+      "criteria": [
+        "Completely unsuitable",
+        "Almost entirely unsuitable",
+        "Very poor",
+        "Poor",
+        "Below average",
+        "Adequate",
+        "Good",
+        "Very good",
+        "Excellent",
+        "Exceptional"
+      ],
+      "instructions": "Considering completeness, usefulness, and compatibility with the assigned Task, Topic, Style, and Audience anchors, what is the overall quality and relevance?",
+      "type": "score"
+    },
+    "Rarity": {
+      "criteria": [
+        "Extremely common",
+        "Very common",
+        "Common",
+        "Mostly common",
+        "Slightly uncommon",
+        "Moderately uncommon",
+        "Uncommon",
+        "Rare",
+        "Very rare",
+        "Exceptionally rare"
+      ],
+      "instructions": "How uncommon, distinctive, or rare is this type of training content?",
+      "type": "score"
+    }
+  },
+  "runtime_policy": {
+    "external_teacher_scores_used": false,
+    "laya_checkpoint_used": false,
+    "laya_model_used": false,
+    "laya_predictions_used": false,
+    "laya_scores_used": false,
+    "pplx_only": true,
+    "qwen_used": false
+  },
+  "score_policy": {
+    "final_score_formula": "native_expected_level + 1.0",
+    "final_score_range": [
+      1.0,
+      10.0
+    ],
+    "mapping_requires_native_smoke_validation": true,
+    "native_expected_level_range": [
+      0.0,
+      9.0
+    ],
+    "number_of_levels": 10,
+    "selection_operator": "all five scores greater than or equal to 5",
+    "selection_threshold": 5.0
+  },
+  "state_template": "Evaluate this instruction-response training example.\n\nSAMPLE TO EVALUATE\n{sample_text}\n\nASSIGNED TASK\n{Task_descriptions}\n\nASSIGNED TOPICS\n{Topic_descriptions}\n\nASSIGNED STYLES\n{Style_descriptions}\n\nASSIGNED AUDIENCES\n{Audience_descriptions}\n\nUse all assigned semantic anchors as reference points when\njudging the example, especially for the Overall Score.\n"
+}

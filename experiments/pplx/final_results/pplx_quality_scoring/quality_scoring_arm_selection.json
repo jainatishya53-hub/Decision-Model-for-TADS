@@ -1,0 +1,67 @@
+{
+  "cluster_assignment_arm": {
+    "purpose": "Task, Topic, Style, and Audience cluster assignment",
+    "selected": "epoch_8_finetuned_pplx"
+  },
+  "final_filter": {
+    "rule": "all_five_scores_greater_than_or_equal_to_threshold",
+    "strict_greater_than": false,
+    "threshold": 5
+  },
+  "pilot": {
+    "base_all_five_gte_5": 253,
+    "base_all_five_gte_6": 26,
+    "base_all_five_gte_7": 0,
+    "comparison": {
+      "completeness": {
+        "delta": 0.0931,
+        "mae": 0.1191,
+        "pearson_r": 0.9976602965145107
+      },
+      "complexity": {
+        "delta": 0.0436,
+        "mae": 0.0868,
+        "pearson_r": 0.9978205577165694
+      },
+      "information_richness": {
+        "delta": 0.0185,
+        "mae": 0.0693,
+        "pearson_r": 0.9986102691298775
+      },
+      "overall_score": {
+        "delta": 0.0469,
+        "mae": 0.0853,
+        "pearson_r": 0.9979934922123876
+      },
+      "rarity": {
+        "delta": -0.0059,
+        "mae": 0.1072,
+        "pearson_r": 0.996993925451267
+      }
+    },
+    "finetuned_all_five_gte_5": 258,
+    "finetuned_all_five_gte_6": 40,
+    "finetuned_all_five_gte_7": 0,
+    "rows": 1000
+  },
+  "pilot_report": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/final_results/pplx_quality_scoring/dual_pplx_scoring_pilot_1000.json",
+  "pilot_report_sha256": "a2dac5c96bf2933e92ef9302b53825974a93099876a8373e519663c0c3da027c",
+  "quality_scoring_arm": {
+    "purpose": "Five-criterion native ScoreQuestion quality scoring",
+    "reason": "Epoch-8 LoRA was trained for cluster classification, not quality scoring. The native PPLX readout is therefore used with its original base backbone to avoid an unvalidated calibration shift.",
+    "selected": "base_native_pplx"
+  },
+  "revision": "cce0f3f80033e9d89d80831d5281fd72124aacce",
+  "runtime_dependencies": {
+    "external_teacher_used": false,
+    "laya_used": false,
+    "qwen_teacher_scores_used": false
+  },
+  "runtime_model": "perplexity-ai/pplx-decider-v1.2",
+  "score_scale": {
+    "native_expected_level": "0\u20139",
+    "reported_range": "1\u201310",
+    "reported_score": "native_expected_level + 1"
+  },
+  "status": "PASSED"
+}

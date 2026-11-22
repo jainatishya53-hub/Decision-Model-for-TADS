@@ -1,0 +1,219 @@
+{
+  "adaptation": {
+    "alpha": 16,
+    "capacity_objective": "maximum_trainable_capacity_that_is_stable_on_one_a100_80gb",
+    "capacity_plan": {
+      "128": {
+        "conservative_training_state_gib": 12.999426126480103,
+        "estimated_gpu_gib_before_activations": 61.7294261264801,
+        "estimated_remaining_gib_before_activations": 17.5205738735199,
+        "four_head_parameters": 2048400,
+        "lora_parameters": 870318080,
+        "rank": 128,
+        "requires_real_smoke_test": true,
+        "shared_layer_norm_parameters": 10240,
+        "total_trainable_parameters": 872376720
+      },
+      "192": {
+        "conservative_training_state_gib": 19.483801126480103,
+        "estimated_gpu_gib_before_activations": 68.21380112648009,
+        "estimated_remaining_gib_before_activations": 11.036198873519908,
+        "four_head_parameters": 2048400,
+        "lora_parameters": 1305477120,
+        "rank": 192,
+        "requires_real_smoke_test": true,
+        "shared_layer_norm_parameters": 10240,
+        "total_trainable_parameters": 1307535760
+      },
+      "256": {
+        "conservative_training_state_gib": 25.968176126480103,
+        "estimated_gpu_gib_before_activations": 74.69817612648009,
+        "estimated_remaining_gib_before_activations": 4.551823873519908,
+        "four_head_parameters": 2048400,
+        "lora_parameters": 1740636160,
+        "rank": 256,
+        "requires_real_smoke_test": true,
+        "shared_layer_norm_parameters": 10240,
+        "total_trainable_parameters": 1742694800
+      }
+    },
+    "dropout": 0.1,
+    "freeze_native_readout": true,
+    "freeze_original_backbone_weights": true,
+    "freeze_visual_backbone": true,
+    "length_768_capacity_report": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/metadata/capacity_smoke/rank_256_length_768.json",
+    "method": "lora",
+    "minimum_free_gpu_memory_after_update_gib": 4.0,
+    "provisional_rank": 256,
+    "rank_candidates": [
+      128,
+      192,
+      256
+    ],
+    "rank_selection_report": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/metadata/capacity_smoke/10_selected_maximum_lora_rank.json",
+    "rank_selection_status": "selected_by_real_gpu_smoke_test",
+    "selected_rank": 256,
+    "selected_rank_maximum_length": 768,
+    "target_module_suffixes": [
+      "down_proj",
+      "gate_proj",
+      "up_proj",
+      "in_proj_qkv",
+      "in_proj_z",
+      "out_proj",
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "testing_order": [
+      256,
+      192,
+      128
+    ],
+    "train_new_four_heads": true,
+    "train_shared_layer_norm": true
+  },
+  "architecture": {
+    "classes_per_field": 100,
+    "description_prototypes": {
+      "logit_scale": 10.0,
+      "maximum_length": 256,
+      "normalization": "l2",
+      "shape_per_field": [
+        100,
+        5120
+      ],
+      "text_template": "Field: {field}. Title: {title}. Description: {description} Representative concepts: {keywords}.",
+      "total_values": 2048000,
+      "trainable": false
+    },
+    "dropout": 0.1,
+    "fields": [
+      "Task",
+      "Topic",
+      "Style",
+      "Audience"
+    ],
+    "head_initialization": "normalized_description_prototype",
+    "head_initialization_norm": 1.4006019505037073,
+    "new_decision_heads": {
+      "Audience": 100,
+      "Style": 100,
+      "Task": 100,
+      "Topic": 100
+    },
+    "representation": "official_pplx_question_marker_hidden_state",
+    "shared_layer_norm": true
+  },
+  "capacity_smoke_test": {
+    "clear_cuda_cache_between_ranks": true,
+    "optimizer_updates_per_rank": 1,
+    "required_before_full_training": true,
+    "selection_rule": "largest rank completing a real optimizer update while retaining the required GPU reserve",
+    "test_backward": true,
+    "test_forward": true,
+    "test_optimizer_step": true,
+    "test_order": [
+      256,
+      192,
+      128
+    ],
+    "train_examples": 8,
+    "validation_examples": 4
+  },
+  "data": {
+    "assignments_changed": false,
+    "complete_target_file": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/complete_target.json",
+    "dataset_regenerated": false,
+    "description_catalogue": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/cluster_descriptions.json",
+    "descriptions_changed": false,
+    "manifest": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/MANIFEST.json",
+    "split_membership_changed": false,
+    "split_sizes": {
+      "test": 858,
+      "train": 3978,
+      "validation": 850
+    },
+    "supervision_root": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1",
+    "test_file": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/test.jsonl",
+    "train_complete_file": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/train_complete.json",
+    "train_file": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/train.jsonl",
+    "truncate_consolidated_targets": false,
+    "validation_file": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/target_supervision/exact_laya_description_aware_v1/validation.jsonl"
+  },
+  "experiment": "pplx_decider_v1_2_description_four_head_rank256_microbatch2_10epoch_run_01",
+  "loss": {
+    "classification": "mean_of_four_soft_cross_entropies",
+    "description": "mean_of_four_description_prototype_soft_cross_entropies",
+    "description_logit_scale": 10.0,
+    "description_loss_weight": 0.5,
+    "target_type": "complete_normalized_soft_distribution",
+    "total": "classification_loss + 0.5 * description_loss"
+  },
+  "model": {
+    "backbone_parameters": 26085330160,
+    "checkpoint": "/tmp/gpuuser2_a_pplx_decider_v1_2/pplx-decider-v1.2-cce0f3f",
+    "hidden_size": 5120,
+    "model_id": "perplexity-ai/pplx-decider-v1.2",
+    "native_readout_parameters": 1305600,
+    "native_readout_policy": "frozen_and_preserved",
+    "resume_checkpoint": null,
+    "revision": "cce0f3f80033e9d89d80831d5281fd72124aacce",
+    "start_from_exact_base_checkpoint": true,
+    "visual_backbone_policy": "frozen"
+  },
+  "training": {
+    "checkpoint_selection": {
+      "evaluate_test_only_on_best_checkpoint": true,
+      "primary_metric": "validation_total_loss",
+      "primary_mode": "minimum",
+      "tie_breakers": [
+        {
+          "metric": "validation_task_argmax_accuracy",
+          "mode": "maximum"
+        },
+        {
+          "metric": "validation_mean_top3_target_mass",
+          "mode": "maximum"
+        }
+      ],
+      "use_test_split_for_selection": false
+    },
+    "effective_batch_size": 64,
+    "epoch_report": {
+      "include_brier_scores": true,
+      "include_epoch_runtime": true,
+      "include_peak_gpu_memory": true,
+      "include_task_argmax_accuracy": true,
+      "include_task_soft_accuracy": true,
+      "include_top3_target_mass": true,
+      "include_training_loss": true,
+      "include_validation_classification_loss": true,
+      "include_validation_description_loss": true,
+      "include_validation_total_loss": true,
+      "save_csv": true,
+      "save_json": true
+    },
+    "epochs": 10,
+    "evaluate_validation_each_epoch": true,
+    "evaluation_batch_size": 1,
+    "gradient_accumulation_steps": 32,
+    "gradient_checkpointing": true,
+    "gradient_clip_norm": 1.0,
+    "head_learning_rate": 0.0001,
+    "logging_updates": 5,
+    "lora_learning_rate": 2.5e-05,
+    "maximum_length": 768,
+    "maximum_length_reason": "PPLX four-question prompt adds about 200 tokens; 768 total tokens preserves approximately the same sample-content budget as the LAYA 512-token setup.",
+    "micro_batch_size": 2,
+    "minimum_epochs": 10,
+    "optimizer": "adamw",
+    "precision": "bfloat16",
+    "retain_all_epoch_checkpoints": true,
+    "save_checkpoint_each_epoch": true,
+    "seed": 42,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.01
+  }
+}

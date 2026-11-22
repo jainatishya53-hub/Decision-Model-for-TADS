@@ -1,0 +1,91 @@
+{
+  "base_model": {
+    "local_snapshot": "/home/gpuuser2/gpuuser2_a/atishya/tads_private/cache/huggingface/hub/models--meta-llama--Llama-3.1-8B/snapshots/d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "name": "meta-llama/Llama-3.1-8B"
+  },
+  "checkpoint_selection": {
+    "mode": "maximum",
+    "primary_metric": "mean of MMLU, TruthfulQA MC2, GSM8K, BBH, and TyDiQA",
+    "select_after_all_five_epochs": true
+  },
+  "evaluation": {
+    "after_every_epoch": true,
+    "benchmarks": [
+      "MMLU",
+      "TruthfulQA MC2",
+      "GSM8K",
+      "BBH",
+      "TyDiQA"
+    ],
+    "full_inputs": true,
+    "total_evaluation_runs": 25,
+    "truthfulqa_metric": "MC2",
+    "use_smoke_limits": false
+  },
+  "experiment": "llama31_8b_pplx_tads_gte5_sequential_5epoch_run_01",
+  "lora": {
+    "alpha": 16,
+    "checkpoint_after_every_epoch": true,
+    "dropout": 0.1,
+    "persistent_root": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/models/llama31_8b_pplx_tads_gte5_sequential_5epoch_lora_run_01",
+    "rank": 64,
+    "retain_all_epoch_checkpoints": true,
+    "storage_policy": {
+      "checkpoint_quality_changed": false,
+      "duplicate_removal_requires_byte_equality": true,
+      "estimated_five_checkpoint_storage_gib": 22.7,
+      "remove_root_level_duplicate_adapter": true,
+      "retain_epoch_directories": [
+        "epoch_0",
+        "epoch_1",
+        "epoch_2",
+        "epoch_3",
+        "epoch_4"
+      ]
+    }
+  },
+  "provenance": {
+    "metric_extractor": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/code/42_extract_full_epoch_metrics.py",
+    "metric_extractor_sha256": "c82e03538b98379ea93786a1f0bb3a6a5021ee95f1ae96b02e57ecdef5979d15",
+    "original_tads_commit": "5459de6e411fdd2997156a53beae3df68705b9ec",
+    "runner": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/code/43_run_full_five_epoch_sequential_training.sh",
+    "runner_sha256": "9ae3b6249a6e91825a85875d485c553ff61091c001f36cb18a7ca39cfe5659ce",
+    "sequential_trainer": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/code/finetune_sequential_epoch.py",
+    "sequential_trainer_sha256": "49f55bdcd769e163bdbe9dff9fff12fcaa5e0ecdfcf07d2db67264004b331595",
+    "smoke_audit": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/metadata/sequential_training/41_quick_sequential_smoke_final_audit.json"
+  },
+  "selection_dataset": {
+    "laya_used": false,
+    "path": "/home/gpuuser2/gpuuser2_a/atishya/pplx_decider_tads/data/model_finetune/tads_pplx_10k_gte_5_dataset.json",
+    "qwen_used": false,
+    "records": 10000,
+    "selected_by": "fine-tuned PPLX cluster assignment, base PPLX five-criterion scoring, all five scores >= 5, original TADS distribution matching and fusion",
+    "sha256": "b1c84215a3105f51b9da182989ac7d5b02c9ada1efba4cdff14766b44c5273c2"
+  },
+  "sequential_resume": {
+    "dataloader_state": true,
+    "fresh_restart_each_epoch": false,
+    "model_state": true,
+    "optimizer_state": true,
+    "rng_state": true,
+    "scheduler_state": true
+  },
+  "status": "READY_FOR_PREFLIGHT",
+  "training": {
+    "effective_batch_size": 128,
+    "epochs": 5,
+    "flash_attention": true,
+    "gradient_accumulation_steps": 128,
+    "gradient_checkpointing": true,
+    "learning_rate": 0.0001,
+    "loss_reduction": "mean",
+    "max_sequence_length": 2048,
+    "micro_batch_size": 1,
+    "mixed_precision": "bf16",
+    "preprocessing_workers": 16,
+    "scheduler": "linear",
+    "seed": 42,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.0
+  }
+}
